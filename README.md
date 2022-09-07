@@ -8,3 +8,4 @@
 </p>
 
 - [Lamda Calculus](https://github.com/dgvozd/haskell-programming/tree/main/01)
+- [Hello Haskell](https://github.com/dgvozd/haskell-programming/tree/main/02)
