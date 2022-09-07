@@ -108,3 +108,11 @@ is shorthand for
    z => z
 ```
 
+**beta normal form** - can't beta reduce further
+
+**combinator** - lambda with no free variables
+
+can't inject any new values or random data
+**divergence** - reduction never terminates
+
+some additional information here: https://habr.com/ru/post/215807/
