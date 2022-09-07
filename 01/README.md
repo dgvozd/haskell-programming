@@ -1,3 +1,5 @@
+The **lambda** in lambda calculus is the greek letter 𝜆 used to introduce, or abstract, arguments for binding in an expression.
+
 **Referential transparency** means that the same function, given the same values to evaluate, will always return the same result in pure functional programming, as they do
 in math.
 
