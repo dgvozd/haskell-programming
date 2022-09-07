@@ -55,7 +55,56 @@ from a concrete instance of a problem, and it abstracts through the introduction
 𝜆𝑧.𝑧
 ```
 
-**beta reduction** - apply the function
+**beta reduction**
+Substituting the input expression for all bound variables within the body and eliminating the head of the abstraction
 
-(\x . x)(2) = 2
-function applications are left associative
+**free variables**
+```
+𝜆𝑥.𝑥𝑦 
+```
+- When we apply this function to an argument, nothing can be done with the 𝑦. It remains irreducible.
+
+That whole abstraction can be applied to an argument, `𝑧`, like this: `(𝜆𝑥.𝑥𝑦)𝑧`.
+
+1. `(𝜆𝑥.𝑥𝑦)𝑧`
+  -- We apply the lambda to the argument 𝑧.
+2. `(𝜆[𝑥 ∶= 𝑧].𝑥𝑦)`
+  -- Since `𝑥` is the bound variable, all instances of `𝑥` in the body of the function will be replaced with `𝑧`. The head will be eliminated, and we replace any `𝑥` in the body with a 𝑧.
+3. `𝑧𝑦`
+  -- The head has been applied away, and there are no more heads or bound variables. Since we know nothing about `𝑧` or `𝑦`, we can reduce this no further.
+
+**multiple Arguments (currying)**
+```
+𝜆𝑥𝑦.𝑥𝑦
+```
+is shorthand for
+
+```
+𝜆𝑥.(𝜆𝑦.𝑥𝑦)
+```
+
+```
+1. (𝜆𝑥𝑦𝑧.𝑥𝑧(𝑦𝑧))(𝜆𝑚𝑛.𝑚)(𝜆𝑝.𝑝)
+2. (𝜆𝑥.𝜆𝑦.𝜆𝑧.𝑥𝑧(𝑦𝑧))(𝜆𝑚.𝜆𝑛.𝑚)(𝜆𝑝.𝑝)
+3. (𝜆𝑦.𝜆𝑧(𝜆𝑚.𝜆𝑛.𝑚)𝑧(𝑦𝑧))(𝜆𝑝.𝑝)
+4. 𝜆𝑧(𝜆𝑚.𝜆𝑛.𝑚)(𝑧)((𝜆𝑝.𝑝)𝑧)
+5. 𝜆𝑧(𝜆𝑛.𝑧)((𝜆𝑝.𝑝)𝑧)
+6. 𝜆𝑧.𝑧
+
+1. x => y => z => x(z)(y(z))(m => n => m)(p)
+
+2. (x => y => z => x(z)(y(z))(m => n => m)(p => p)
+
+3. x = (m => n => m)
+   (y => z => (m => n => m)(z)(y(z))(p => p)
+
+4. y = (p => p)
+   z => (m => n => m)(z)((p => p)z)
+
+5. m = z
+   z => (n => z)((p => p)z)
+
+6. n = ((p => p)z)
+   z => z
+```
+
