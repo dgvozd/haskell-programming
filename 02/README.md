@@ -16,3 +16,13 @@ so they can be used without needing to do anything special.
 `:info` -- type information for function, including infix, associativity, precedence
 
 
+**Expression** vs **Declaration**:
+- expressions evaluate to results
+- declarations allow us to name expressions
+
+We say that expressions are in **normal form** when there are no more evaluation steps that can be taken (when they've reached an *irreducible* form)
+*Reducible* expressions are also called **redexes**.
+
+**Expressions are the most basic unit of a Haskell program, and functions are a specific type of expression.**
+As in the lambda calculus, all functions in Haskell take one argument and return one result.
+The way to think of this is that, in Haskell, when it seems we are passing multiple arguments to a function, we are actually applying a series of nested functions, each to one argument. This is called **currying**.
