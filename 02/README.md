@@ -31,3 +31,14 @@ The way to think of this is that, in Haskell, when it seems we are passing multi
 *triple x = x * 3*
 
 **Values** are expressions, but cannot be reduced further. Values are a terminal point of reduction.
+
+Haskell doesn’t evaluate everything to canonical or normal form by default. Instead, it only evaluates to weak head normal form (WHNF) by default.
+
+```
+(\f -> (1, 2 + f)) 2
+```
+reduces to the following in WHNF:
+```
+(1, 2 + 2)
+```
+This representation is an approximation, but the key point here is that 2 + 2 is not evaluated to 4 until the last possible moment.
